@@ -1,0 +1,18 @@
+library(readr)
+#import housing train data
+View(housing_train)
+df <- na.omit(housing_train)
+df1 <- subset(housing_train, select = -c(Suburb, Address, CouncilArea))
+df <- na.omit(df1)
+View(df)
+#model1 <- lm(Price ~ Rooms + Type + Method + SellerG + Distance + Postcode + Bedroom2 + Bathroom + Car + Landsize + BuildingArea, data = df)
+library(readr)
+#import hopusing test data
+#model2 <- lm(Price ~ Rooms + Type + Method + SellerG + Distance + Postcode, data = df)
+#output_1 <- predict.lm(model2,housing_test)
+#model2 <- lm(Price ~ Rooms + Type + Method + Distance + Postcode, data = df)
+#output_1 <- predict.lm(model2,housing_test)
+model2 <- lm(Price ~ Rooms + Type + Method + Distance, data = df)
+output_1 <- predict.lm(model2,housing_test)
+View(output_1)
+write.csv(output_1, "output_1.csv", row.names=FALSE)
